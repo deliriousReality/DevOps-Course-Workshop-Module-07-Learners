@@ -71,7 +71,7 @@ pipeline {
                 failUnstable: true,
                 failUnhealthy: true,
                 failNoReports: true,
-                onlyStable: false
+                onlyStable: false,
                 conditionalCoverageTargets: '90, 0, 0',
                 fileCoverageTargets: '90, 0, 0',
                 lineCoverageTargets: '90, 0, 0',
