@@ -13,3 +13,6 @@ jobs:
       uses: actions/hello-world-javascript-action@v1.1 # Name of the action. This uses https://github.com/actions/hello-world-javascript-action (actions/ means GitHub's own)
       with:                     # Needed for any args
         who-to-greet: 'Mona the Octocat'
+    
+    - name: Build C# Code
+      run: dotnet build
