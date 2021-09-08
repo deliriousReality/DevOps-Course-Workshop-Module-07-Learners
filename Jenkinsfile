@@ -63,22 +63,10 @@ pipeline {
         }
     }
     post {
-        success {
-            publishCoverage (
-                enableNewApi: true,
-                autoUpdateHealth: true,
-                autoUpdateStability: true,
-                failUnstable: true,
-                failUnhealthy: true,
-                failNoReports: true,
-                onlyStable: false,
-                conditionalCoverageTargets: '90, 0, 0',
-                fileCoverageTargets: '90, 0, 0',
-                lineCoverageTargets: '90, 0, 0',
-                methodCoverageTargets: '90, 0, 0',
-                packageCoverageTargets: '90, 0, 0',
+        always {
+            publishCoverage failUnhealthy: true, 
+                globalThresholds: [[thresholdTarget: 'Package', unhealthyThreshold: 90.0]],
                 adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
-            )
         }
     }
 }
