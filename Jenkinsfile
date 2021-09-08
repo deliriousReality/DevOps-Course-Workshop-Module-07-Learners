@@ -62,7 +62,9 @@ pipeline {
             }
         }
         post {
-            publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
+            success {
+                publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
+            }
         }
     }
 }
