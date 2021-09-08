@@ -19,4 +19,4 @@ jobs:
     
     - name: Build TypeScript Code
       working-directory: ./DotnetTemplate.Web
-      run: npm install
+      run: npm install && npm run build
