@@ -16,3 +16,7 @@ jobs:
     
     - name: Build C# Code
       run: dotnet build
+    
+    - name: Build TypeScript Code
+      working-directory: ./DotnetTemplate.Web
+      run: npm install
