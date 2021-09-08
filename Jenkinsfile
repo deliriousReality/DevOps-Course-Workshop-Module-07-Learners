@@ -10,11 +10,8 @@ pipeline {
     stages {
         stage('.NET Install') {
             steps {
-                sh '''sudo snap install dotnet-sdk --classic --channel=5.0
-                    sudo snap alias dotnet-sdk.dotnet dotnet
-                    sudo snap install dotnet-runtime-50 --classic
-                    sudo snap alias dotnet-runtime-50.dotnet dotnet
-                    export DOTNET_ROOT=/snap/dotnet-sdk/current'''
+                sh '''wget https://dot.net/v1/dotnet-install.sh
+                    ./dotnet-install.sh -c 5.0'''
             }
         }
         stage('Build') {
