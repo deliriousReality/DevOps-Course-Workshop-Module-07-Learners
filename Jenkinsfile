@@ -39,5 +39,27 @@ pipeline {
                 }
             }
         }
+        stage('Run Linter on Front End') {
+            agent {
+                docker { image 'node:14-alpine' }
+            }
+            steps {
+                echo 'Linting Front End...'
+                dir('DotnetTemplate.Web') {
+                    sh 'npm run lint'
+                }
+            }
+        }
+        stage('Test Front End') {
+            agent {
+                docker { image 'node:14-alpine' }
+            }
+            steps {
+                echo 'Testing Front End...'
+                dir('DotnetTemplate.Web') {
+                    sh 'npm t'
+                }
+            }
+        }
     }
 }
