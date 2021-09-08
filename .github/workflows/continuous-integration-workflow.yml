@@ -17,6 +17,9 @@ jobs:
     - name: Build C# Code
       run: dotnet build
     
+    - name: Test C# Code
+      run: dotnet test
+    
     - name: Build TypeScript Code
       working-directory: ./DotnetTemplate.Web
       run: npm install && npm run build
