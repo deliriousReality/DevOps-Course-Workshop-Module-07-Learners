@@ -57,9 +57,12 @@ pipeline {
             steps {
                 echo 'Testing Front End...'
                 dir('DotnetTemplate.Web') {
-                    sh 'npm t'
+                    sh 'npm run test-with-coverage'
                 }
             }
+        }
+        post {
+            publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
         }
     }
 }
