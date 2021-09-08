@@ -63,6 +63,9 @@ pipeline {
         }
     }
     post {
+        agent {
+                docker { image 'node:14-alpine' }
+            }
         success {
             publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
         }
