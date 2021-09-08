@@ -61,10 +61,10 @@ pipeline {
                 }
             }
         }
-        post {
-            success {
-                publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
-            }
+    }
+    post {
+        success {
+            publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
         }
     }
 }
