@@ -1,26 +1,29 @@
 pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-    }
-
-    // environment {
-    // DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
-    // }
+    agent none
 
     stages {
-        stage('.NET Install') {
+        stage('Build .NET') {
+            agent {
+                docker { image 'mcr.microsoft.com/dotnet/sdk:5.0' }
+            }
+            environment {
+                DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
+            }
             steps {
-                sh '''wget https://dot.net/v1/dotnet-install.sh
-                    ./dotnet-install.sh -c 5.0'''
+                echo 'Building .NET..'
+                sh 'dotnet build'
+                
             }
         }
-        stage('Build') {
+        stage('Build Front End') {
+            agent {
+                docker { image 'node:14-alpine' }
+            }
             steps {
-                echo 'Building..'
-                sh 'dotnet build'
-                // dir('DotnetTemplate.Web') {
-                //     sh 'npm install && npm run build'
-                // }
+                echo 'Building Front End...'
+                dir('DotnetTemplate.Web') {
+                    sh 'npm install && npm run build'
+                }
             }
         }
         stage('Test') {
