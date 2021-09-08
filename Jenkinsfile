@@ -64,7 +64,7 @@ pipeline {
     }
     post {
         success {
-            publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
+            publishCoverage adapters: [istanbulCoberturaAdapter('DotnetTemplate.Web/coverage/cobertura-coverage.xml')]
         }
     }
 }
