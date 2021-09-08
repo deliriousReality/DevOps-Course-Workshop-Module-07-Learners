@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-    }
+    agent any
 
     stages {
         stage('Build .NET') {
@@ -31,9 +29,9 @@ pipeline {
             }
         }
         stage('Build Front End') {
-            // agent {
-            //     docker { image 'node:14-alpine' }
-            // }
+            agent {
+                docker { image 'node:14-alpine' }
+            }
             steps {
                 echo 'Building Front End...'
                 dir('DotnetTemplate.Web') {
@@ -42,9 +40,9 @@ pipeline {
             }
         }
         stage('Run Linter on Front End') {
-            // agent {
-            //     docker { image 'node:14-alpine' }
-            // }
+            agent {
+                docker { image 'node:14-alpine' }
+            }
             steps {
                 echo 'Linting Front End...'
                 dir('DotnetTemplate.Web') {
@@ -53,9 +51,9 @@ pipeline {
             }
         }
         stage('Test Front End') {
-            // agent {
-            //     docker { image 'node:14-alpine' }
-            // }
+            agent {
+                docker { image 'node:14-alpine' }
+            }
             steps {
                 echo 'Testing Front End...'
                 dir('DotnetTemplate.Web') {
@@ -65,9 +63,6 @@ pipeline {
         }
     }
     post {
-        // agent {
-        //         docker { image 'node:14-alpine' }
-        //     }
         success {
             publishCoverage adapters: [istanbulCoberturaAdapter('target/site/cobertura-coverage.xml')]
         }
