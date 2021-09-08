@@ -5,6 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'dotnet build'
+                dir('DotnetTemplate.Web') {
+                    sh 'npm install && npm run build'
+                }
             }
         }
         stage('Test') {
